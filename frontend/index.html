@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ascend - Grow Your Credit Score</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="styles/style.css" rel="stylesheet" />
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 28rem;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: slideUp 0.3s ease;
+        }
+
+        .dark .modal-content {
+            background-color: #1a1f2e;
+            border: 1px solid #2d3748;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6b7280;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .close-btn:hover {
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .dark .close-btn:hover {
+            background-color: #374151;
+            color: #e5e7eb;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-logo svg {
+            width: 2rem;
+            height: 2rem;
+            color: var(--primary);
+        }
+
+        .modal-logo h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .dark .modal-logo h2 {
+            color: white;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .dark .modal-title {
+            color: #f3f4f6;
+        }
+
+        .modal-subtitle {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .dark .modal-subtitle {
+            color: #9ca3af;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .dark .form-label {
+            color: #d1d5db;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #f9fafb;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #1f2937;
+            transition: all 0.2s;
+        }
+
+        .dark .form-input {
+            background-color: #101722;
+            border-color: #374151;
+            color: #e5e7eb;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            ring: 2px;
+            ring-color: rgba(33, 113, 242, 0.2);
+            box-shadow: 0 0 0 3px rgba(33, 113, 242, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .dark .form-input::placeholder {
+            color: #6b7280;
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #1f2937;
+        }
+
+        .dark .checkbox-label {
+            color: #e5e7eb;
+        }
+
+        .form-checkbox {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid #d1d5db;
+            cursor: pointer;
+        }
+
+        .form-link {
+            font-size: 0.875rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-link:hover {
+            color: rgba(33, 113, 242, 0.8);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .submit-btn:hover {
+            background-color: rgba(33, 113, 242, 0.9);
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .dark .modal-footer {
+            color: #9ca3af;
+        }
+
+        .modal-footer button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .modal-footer button:hover {
+            color: rgba(33, 113, 242, 0.8);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <header>
+            <nav class="container">
+                <div class="logo-container">
+                    <svg class="logo-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2.5 22H21.5L12 2ZM12 7.61L16.24 15H7.76L12 7.61Z"></path>
+                    </svg>
+                    <h1 class="logo-text">Ascend</h1>
+                </div>
+                <div class="nav-links">
+                    <a class="nav-link" href="#">How it works</a>
+                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="#">Resources</a>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="openLoginModal()">Login</button>
+                    <button class="btn btn-primary" onclick="openSignupModal()">Get Started</button>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="hero-section"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuABxPBUaDOMlW7gPm175-_MpIHMranydQD8PP8I-tCDYc9sWhTIwB6ksNf4WYLjLvCCV-xpsZcO7l6EiROz15Stv5V9dCYsRMGvK3PTB1xTY6VAEyyb6gFYpwDQDuyHO-o__IsC7r3oZri5og7u9R_SZbRePzUMeD3V5JjrOTJzGLnvuftSkekkGVqVbobazsmDhYIpfDu9Zlfvfuj-2g_eVu7R_cYUQWC3S_Dd5-XNvnZaogWPnl4mSiDQopxEPKeDzSuX6eI4w1A");'>
+                <div class="gradient-overlay"></div>
+                <div class="hero-content container">
+                    <h1 class="hero-title">Ascend — Grow Your Credit Score with Confidence</h1>
+                    <p class="hero-subtitle">Track, Learn, and Build a Strong Financial Future with personalized
+                        insights.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-large" onclick="openSignupModal()">Get Started</button>
+                        <button class="btn btn-outline btn-large" onclick="openLoginModal()">Login</button>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Your journey to a better credit score starts here</h2>
+                        <p class="section-description">Ascend provides the tools and insights you need to
+                            understand and improve your credit health.</p>
+                    </div>
+                    <div class="grid grid-3col">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg fill="currentColor" height="32" viewBox="0 0 256 256" width="32"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M216,40H136V24a8,8,0,0,0-16,0V40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H79.36L57.75,219a8,8,0,0,0,12.5,10l29.59-37h56.32l29.59,37a8,8,0,1,0,12.5-10l-21.61-27H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,136H40V56H216V176ZM104,120v24a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm32-16v40a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm32-16v56a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Smart Credit Insights</h3>
+                            <p class="feature-description">Get a clear picture of your credit score,
+                                factors affecting it, and how to improve.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg fill="currentColor" height="32" viewBox="0 0 256 256" width="32"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M235.92,199A8,8,0,0,1,225,195.92L155.32,72H136v8a8,8,0,0,1-16,0V72H100.68L31,195.92A8,8,0,0,1,17,188.08L82.32,72H24a8,8,0,0,1,0-16H232a8,8,0,0,1,0,16H173.68L239,188.08A8,8,0,0,1,235.92,199ZM128,112a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V120A8,8,0,0,0,128,112Zm0,56a8,8,0,0,0-8,8v16a8,8,0,0,0,16,0V176A8,8,0,0,0,128,168Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Personalized Growth Plan</h3>
+                            <p class="feature-description">Receive a tailored plan with actionable steps to
+                                boost your credit score over time.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg fill="currentColor" height="32" viewBox="0 0 256 256" width="32"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Private &amp; Secure</h3>
+                            <p class="feature-description">Your data is protected with bank-level security,
+                                ensuring your privacy and peace of mind.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Hear from our users</h2>
+                        <p class="section-description">See how Ascend has helped others improve their
+                            financial health.</p>
+                    </div>
+                    <div class="grid grid-2-3col">
+                        <div class="testimonial-card">
+                            <p class="card-text">"Ascend made it so easy to understand my
+                                credit score. I was able to raise it by 50 points in just a few months!"</p>
+                            <div class="testimonial-author">
+                                <img alt="Avatar of Jane Doe" class="testimonial-avatar"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3ywRtwDSSVUdDbKDG9Ugt2wLg7NGIbA_sH9rNvz7i5ovuPIo-85FLoM5EEb8RK7QC9xSiFnNd7EMpllppVA7q76wOZ9dC4HHgLJba4qCZgtmeIQOwItTdfakYAX4Id-fYhK6v2HKFiB1dD44uxKwvvPLa5ZuX7s3yrQwNaLFft_Q0TTDUywOAXsTegzFu0p3qTYAsgqviDDp7HRS63kQZy8wtBzHHzIrOTTZG8_VUhZ9ZvHXt1KhYoMfvYdwmBJ5iM0WbWdsNUvE" />
+                                <div>
+                                    <p class="testimonial-name">Jane D.</p>
+                                    <p class="testimonial-role">Ascend User</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="card-text">"The personalized plan was a game-changer.
+                                I knew exactly what to do to improve my score. Highly recommend!"</p>
+                            <div class="testimonial-author">
+                                <img alt="Avatar of John Smith" class="testimonial-avatar"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuClMqkwFgHz_RYFW3zkpT-yQacxFrsltKaWcHLXt9KoxkBp5PrnIn3QanyMPdzICqsPPO0qc-MxLJbTOqN3maWarGlSmkfgbm8c_y0mFxGlVH-lcCerTxStFULuq8dJBZb4mTtDa32lqGM9M8sig94Wo4JJKCYtK4VukpWQBTRycqa8iveRM-suktX2QkxvNPaUBXs6yaTPUG3r0zcY41ZtPXZil19BjkubtXn1zuFHkoadoPoUs2LsLpbCNm9--U1RNFz9vlpzcXw" />
+                                <div>
+                                    <p class="testimonial-name">John S.</p>
+                                    <p class="testimonial-role">Ascend User</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card testimonial-special">
+                            <p class="card-text">"I finally feel in control of my finances.
+                                Ascend's tools are simple, effective, and empowering."</p>
+                            <div class="testimonial-author">
+                                <img alt="Avatar of Sarah K." class="testimonial-avatar"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQWzPmTFrQAgMV1kbUCS5__Mbm-6byzUYQ3bjEfCuyDYJHfmW_PH8IFwAEUgkS5cDEmnSHjd43QDf-BgEolRTRR1bgrDO5a5aMmzoDZF9V4hFpxsDkIiz8K7N8GdPwLtgoglGKUhJyx-aQ3kgOL7mNIA1v7aZXoaRJhJOJKFGidWqvkE_swhoKHG5UFiBAXARxoxYi_KgNp8WE4uLCojfs48KyVh5wL6BlfrqTRzMnGutF8bpVAHgwLGeNNYSxwPUDR705j5xPOkE" />
+                                <div>
+                                    <p class="testimonial-name">Sarah K.</p>
+                                    <p class="testimonial-role">Ascend User</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="footer-content container">
+                <div class="footer-logo">
+                    <svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2.5 22H21.5L12 2ZM12 7.61L16.24 15H7.76L12 7.61Z"></path>
+                    </svg>
+                </div>
+                <p class="footer-text">© 2024 Ascend. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeLoginModal()">&times;</button>
+            <div class="modal-header">
+                <div class="modal-logo">
+                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2.5 22H21.5L12 2ZM12 7.61L16.24 15H7.76L12 7.61Z"></path>
+                    </svg>
+                    <h2>Ascend</h2>
+                </div>
+                <h3 class="modal-title">Welcome Back</h3>
+                <p class="modal-subtitle">Sign in to continue your journey</p>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label" for="login-email">Email</label>
+                    <input class="form-input" id="login-email" placeholder="you@example.com" type="email" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="login-password">Password</label>
+                    <input class="form-input" id="login-password" placeholder="••••••••" type="password" required />
+                </div>
+                <div class="form-checkbox-group">
+                    <label class="checkbox-label">
+                        <input class="form-checkbox" type="checkbox" />
+                        <span>Remember me</span>
+                    </label>
+                    <a class="form-link" href="#">Forgot password?</a>
+                </div>
+                <button class="submit-btn" type="submit">Login</button>
+            </form>
+            <div class="modal-footer">
+                Don't have an account? <button onclick="switchToSignup()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeSignupModal()">&times;</button>
+            <div class="modal-header">
+                <div class="modal-logo">
+                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2.5 22H21.5L12 2ZM12 7.61L16.24 15H7.76L12 7.61Z"></path>
+                    </svg>
+                    <h2>Ascend</h2>
+                </div>
+                <h3 class="modal-title">Create your account</h3>
+                <p class="modal-subtitle">Start your journey to a better credit score</p>
+            </div>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label class="form-label" for="signup-name">Full Name</label>
+                    <input class="form-input" id="signup-name" placeholder="John Doe" type="text" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signup-email">Email</label>
+                    <input class="form-input" id="signup-email" placeholder="you@example.com" type="email" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signup-phone">Phone Number (Optional)</label>
+                    <input class="form-input" id="signup-phone" placeholder="+1 (555) 123-4567" type="tel" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signup-password">Password</label>
+                    <input class="form-input" id="signup-password" placeholder="••••••••" type="password" required />
+                </div>
+                <button class="submit-btn" type="submit">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                Already have an account? <button onclick="switchToLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/script.js"></script>
+</body>
+
+</html>

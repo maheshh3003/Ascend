@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ascend - Rewards</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../styles/rewards.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg class="logo-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,176a72,72,0,1,1,72-72A72.08,72.08,0,0,1,128,200ZM164.49,99.51a12,12,0,0,1,0,17l-28,28a12,12,0,0,1-17,0l-28-28a12,12,0,0,1,17-17L128,119l19.51-19.52A12,12,0,0,1,164.49,99.51Z">
+                        </path>
+                    </svg>
+                    <span class="logo-text">Ascend</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a class="nav-item" href="userdashboard.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z">
+                                </path>
+                            </svg>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="credo.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-88a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm-84,0a12,12,0,1,1,12,12A12,12,0,0,1,60,128Zm144,0a12,12,0,1,1,12,12A12,12,0,0,1,204,128Z">
+                                </path>
+                            </svg>
+                            <span>Credo AI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="improvescore.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,40H136V24a8,8,0,0,0-16,0V40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H79.36L57.75,219a8,8,0,0,0,12.5,10l29.59-37h56.32l29.59,37a8,8,0,1,0,12.5-10l-21.61-27H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,136H40V56H216V176ZM104,120v24a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm32-16v40a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm32-16v56a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Z">
+                                </path>
+                            </svg>
+                            <span>Improve Scores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item active" href="rewards.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H216V200Zm-88-80a48,48,0,0,0,48-48,8,8,0,0,0-16,0,32,32,0,0,1-64,0,8,8,0,0,0-16,0A48,48,0,0,0,128,120Z">
+                                </path>
+                            </svg>
+                            <span>Rewards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="userprofile.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z">
+                                </path>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a class="nav-item" href="#">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z">
+                        </path>
+                    </svg>
+                    <span>Help and Support</span>
+                </a>
+                <a class="nav-item logout-btn" href="#" onclick="handleLogout()">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z">
+                        </path>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-container">
+                <div class="page-header">
+                    <h1 class="page-title">Rewards & Benefits</h1>
+                    <p class="page-subtitle">Unlock exclusive rewards and offers based on your spending through Ascend
+                    </p>
+                </div>
+
+                <!-- Spending Overview -->
+                <div class="points-overview">
+                    <div class="points-card total-points">
+                        <div class="points-icon">
+                            <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,16V88H32V64Zm0,128H32V104H224v88Zm-16-24a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h32A8,8,0,0,1,208,168Zm-64,0a8,8,0,0,1-8,8H120a8,8,0,0,1,0-16h16A8,8,0,0,1,144,168Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="points-info">
+                            <h3 class="points-label">Total Spending</h3>
+                            <p class="points-value" id="total-spending">$0</p>
+                        </div>
+                    </div>
+
+                    <div class="points-card available-points">
+                        <div class="points-icon">
+                            <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,72H56a8,8,0,0,1,0-16H192a8,8,0,0,0,0-16H56A24,24,0,0,0,32,64V192a24,24,0,0,0,24,24H216a16,16,0,0,0,16-16V88A16,16,0,0,0,216,72Zm0,128H56a8,8,0,0,1-8-8V86.63A23.84,23.84,0,0,0,56,88H216Zm-48-60a12,12,0,1,1,12,12A12,12,0,0,1,168,140Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="points-info">
+                            <h3 class="points-label">Rewards Tier</h3>
+                            <p class="points-value" id="current-tier">Bronze</p>
+                        </div>
+                    </div>
+
+                    <div class="points-card redeemed-points">
+                        <div class="points-icon">
+                            <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H216V200Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="points-info">
+                            <h3 class="points-label">Next Tier</h3>
+                            <p class="points-value" id="next-tier">Spend more to unlock Silver</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gift Cards Section -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M216,72H180.92c.39-.33.79-.65,1.17-1A29.53,29.53,0,0,0,192,49.57,32.62,32.62,0,0,0,158.44,16,29.53,29.53,0,0,0,137,25.91a54.94,54.94,0,0,0-9,14.48,54.94,54.94,0,0,0-9-14.48A29.53,29.53,0,0,0,97.56,16,32.62,32.62,0,0,0,64,49.57,29.53,29.53,0,0,0,73.91,71c.38.33.78.65,1.17,1H40A16,16,0,0,0,24,88v32a16,16,0,0,0,16,16v64a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V136a16,16,0,0,0,16-16V88A16,16,0,0,0,216,72Z">
+                            </path>
+                        </svg>
+                        Gift Cards
+                    </h2>
+                    <p class="section-description">Redeem your spending for popular gift cards</p>
+                    <div class="rewards-grid" id="gift-cards-grid">
+                        <!-- Dynamically loaded -->
+                    </div>
+                </div>
+
+                <!-- Special Deals & Exclusive Offers Section -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z">
+                            </path>
+                        </svg>
+                        Exclusive Deals & Offers
+                    </h2>
+                    <p class="section-description">Special discounts, credit cards, and brand offers based on your
+                        credit category</p>
+                    <div class="deals-grid" id="special-deals">
+                        <!-- Dynamically loaded -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Coupon/Card Modal -->
+    <div class="modal" id="offer-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="offer-modal-title">Get Your Offer</h2>
+                <button class="modal-close" onclick="closeOfferModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="offer-preview" id="offer-preview">
+                    <!-- Offer details -->
+                </div>
+                <div class="coupon-code-display" id="coupon-display" style="display: none;">
+                    <div class="coupon-label">Your Coupon Code:</div>
+                    <div class="coupon-code" id="coupon-code"></div>
+                    <button class="btn-copy" onclick="copyCouponCode()">
+                        <svg fill="currentColor" viewBox="0 0 256 256" width="16" height="16">
+                            <path
+                                d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z">
+                            </path>
+                        </svg>
+                        Copy Code
+                    </button>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closeOfferModal()">Close</button>
+                    <button class="btn-primary" id="confirm-offer-btn" onclick="confirmOffer()">Get Offer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/rewards.js"></script>
+</body>
+
+</html>

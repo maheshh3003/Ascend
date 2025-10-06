@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ascend Dashboard</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../styles/userdashboard.css" rel="stylesheet" />
+    <style>
+        /* Credit Score Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 28rem;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: slideUp 0.3s ease;
+        }
+
+        .dark .modal-content {
+            background-color: #1a1f2e;
+            border: 1px solid #2d3748;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .dark .modal-title {
+            color: #f3f4f6;
+        }
+
+        .modal-subtitle {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .dark .modal-subtitle {
+            color: #9ca3af;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .dark .form-label {
+            color: #d1d5db;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #f9fafb;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #1f2937;
+            transition: all 0.2s;
+        }
+
+        .dark .form-input {
+            background-color: #101722;
+            border-color: #374151;
+            color: #e5e7eb;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(33, 113, 242, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .submit-btn:hover {
+            background-color: rgba(33, 113, 242, 0.9);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-hint {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+
+        .dark .form-hint {
+            color: #9ca3af;
+        }
+
+        .logout-btn {
+            margin-top: 1rem;
+            color: #ef4444;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Utilization Alert Styles */
+        .utilization-alert {
+            margin: 1.5rem 0;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border: 2px solid;
+            animation: slideIn 0.3s ease;
+        }
+
+        .alert-safe {
+            background-color: #f0fdf4;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .dark .alert-safe {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: #86efac;
+        }
+
+        .alert-caution {
+            background-color: #fffbeb;
+            border-color: #eab308;
+            color: #854d0e;
+        }
+
+        .dark .alert-caution {
+            background-color: rgba(234, 179, 8, 0.1);
+            color: #fde047;
+        }
+
+        .alert-warning {
+            background-color: #fff7ed;
+            border-color: #f59e0b;
+            color: #9a3412;
+        }
+
+        .dark .alert-warning {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #fbbf24;
+        }
+
+        .alert-danger {
+            background-color: #fef2f2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .dark .alert-danger {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+        }
+
+        .alert-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .alert-body {
+            font-size: 0.875rem;
+        }
+
+        .alert-message {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .alert-recommendation {
+            margin: 0.5rem 0 1rem 0;
+            opacity: 0.9;
+        }
+
+        .utilization-details {
+            background-color: rgba(0, 0, 0, 0.03);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .dark .utilization-details {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .utilization-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .utilization-row {
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .utilization-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .text-danger {
+            color: #ef4444;
+        }
+
+        .text-warning {
+            color: #f59e0b;
+        }
+
+        .utilization-divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.1);
+            margin: 0.75rem 0;
+        }
+
+        .dark .utilization-divider {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .category-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .category-badge {
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .category-limits {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .card-specific-info {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .card-specific-info {
+            border-top-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .card-specific-info h5 {
+            margin: 0 0 0.75rem 0;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg class="logo-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,176a72,72,0,1,1,72-72A72.08,72.08,0,0,1,128,200ZM164.49,99.51a12,12,0,0,1,0,17l-28,28a12,12,0,0,1-17,0l-28-28a12,12,0,0,1,17-17L128,119l19.51-19.52A12,12,0,0,1,164.49,99.51Z">
+                        </path>
+                    </svg>
+                    <span class="logo-text">Ascend</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a class="nav-item active" href="#">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z">
+                                </path>
+                            </svg>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="credo.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-88a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm-84,0a12,12,0,1,1,12,12A12,12,0,0,1,60,128Zm144,0a12,12,0,1,1,12,12A12,12,0,0,1,204,128Z">
+                                </path>
+                            </svg>
+                            <span>Credo AI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="improvescore.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,40H136V24a8,8,0,0,0-16,0V40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H79.36L57.75,219a8,8,0,0,0,12.5,10l29.59-37h56.32l29.59,37a8,8,0,1,0,12.5-10l-21.61-27H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,136H40V56H216V176ZM104,120v24a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm32-16v40a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm32-16v56a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Z">
+                                </path>
+                            </svg>
+                            <span>Improve Scores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="rewards.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H216V200Zm-88-80a48,48,0,0,0,48-48,8,8,0,0,0-16,0,32,32,0,0,1-64,0,8,8,0,0,0-16,0A48,48,0,0,0,128,120Z">
+                                </path>
+                            </svg>
+                            <span>Rewards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="userprofile.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z">
+                                </path>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a class="nav-item" href="#">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z">
+                        </path>
+                    </svg>
+                    <span>Help and Support</span>
+                </a>
+                <a class="nav-item logout-btn" href="#" onclick="handleLogout()">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z">
+                        </path>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="content-wrapper">
+                <h1 class="welcome-title">Welcome back, Alex 👋</h1>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <p class="stat-label">Current Credit Score</p>
+                            <p class="stat-value credit-score-value">---</p>
+                            <p class="stat-subtitle credit-level-label">Loading...</p>
+                        </div>
+                        <div class="stat-icon"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuARYXD-27YUIMIT9Kww5DZZ5av_7piZeuoc_hAzYtN8XTdHQSPUmUNEn0DdgWQ2dbZ32-ayPJkepb2ef2ysNV9aWcYyp6wuOM9JbqcJEFRD536oCF09UEfe7EELxxof2THdDpQlxAjzHbYnXGzs154SgpnYOoGDbB2u2B1__BakOqtJLkAp6TMkkSj4K3G7hgUAxbWI4te-OPRZ4jvBMcjgIzF0FgO2vK3STrgdHOUv6TBKqF1_II3R78gc68oZa5sY3Sybk1i1Nfk");'>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <p class="stat-label">Credit Level</p>
+                            <p class="stat-value credit-level-value">---</p>
+                            <p class="stat-subtitle muted">Keep up the good work!</p>
+                        </div>
+                        <div class="stat-icon"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOH1moqP9rJ2xPGJ95uBu3yyhSArsDitiAFGUygOCNNlddVGdjfYyLCE2HnSAU5rSA_xhttmwqIxCuU1h94NuCdMq2bYABlaNfW4cx04bImFBI0GKGfvFBvi9yrw2PiaBHE6QK1alf2KqmIpmxkdu3VltgPcgrRNUTtZopqYn411u2OmegCvC7U5678c8Rhn14xkxofZBav2bp0Y4-1kg5DXZXUfR4E-J1Ip26OcqMI1PJ2pArVUGdX5uH5wEZzeXl-rM9Xh-d_TM");'>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <p class="stat-label">Last Updated</p>
+                            <p class="stat-value large last-updated-value">Not yet updated</p>
+                            <p class="stat-subtitle muted">Updated monthly.</p>
+                        </div>
+                        <div class="stat-icon"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkHBbFONCf5_0_MSgpvZItMZyBVTtKgiwZlmC12XGXYEWe7NrkSJ0N-EUpoj6GJRF3dRMYRHruUDYWruj7sw3uCq5aPgEnL43Pbn5GmtChQUqoWEzjGFSNDE8cAyVJJx9GwboA0ecBCKuDrakSCDGGcqYrUCD0fR4wFv6Nb6CgSDuUdMMTPDJ85tFrB1VExmkaBxQvrfmL2dqlneAyNIsykgrkTnpu_zT5lFoGyHamLJHFCbnn5Gg82qTvJkD8X3OLpKAchpOUfWo");'>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Bills & Payments -->
+                <div class="payments-card">
+                    <div class="card-header">
+                        <h2 class="chart-title">Upcoming Bills & Payments</h2>
+                        <button class="btn-add" onclick="openAddPaymentModal()">
+                            <svg class="icon-sm" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z">
+                                </path>
+                            </svg>
+                            Add Payment
+                        </button>
+                    </div>
+                    <div class="payments-list" id="payments-list">
+                        <!-- Payments will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Credit Score Input Modal -->
+    <div id="creditScoreModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Welcome to Ascend! 🎉</h2>
+                <p class="modal-subtitle">Let's get started by setting up your credit score tracking</p>
+            </div>
+            <form onsubmit="handleCreditScoreSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label" for="credit-score-input">Enter Your Current Credit
+                        Score</label>
+                    <input class="form-input" id="credit-score-input" type="number" min="300" max="850"
+                        placeholder="e.g., 720" required />
+                    <p class="form-hint">Credit scores typically range from 300 to 850</p>
+                </div>
+                <button class="submit-btn" type="submit">Save Credit Score</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Payment Modal -->
+    <div class="modal" id="add-payment-modal">
+        <div class="modal-content-payment">
+            <div class="modal-header">
+                <h2>Add New Payment</h2>
+                <button class="modal-close" onclick="closeAddPaymentModal()">&times;</button>
+            </div>
+            <form class="modal-form" id="add-payment-form">
+                <div class="form-group">
+                    <label class="form-label" for="payment-type">Payment Type</label>
+                    <select class="form-input" id="payment-type" required>
+                        <option value="">Select payment type</option>
+                        <option value="credit-card">Credit Card Payment</option>
+                        <option value="loan">Loan Payment</option>
+                        <option value="utility">Utility Bill</option>
+                        <option value="subscription">Subscription</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="payment-name">Payment Description</label>
+                    <input class="form-input" id="payment-name" placeholder="e.g., Platinum Card Payment" required
+                        type="text" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="payment-amount">Amount ($)</label>
+                    <input class="form-input" id="payment-amount" min="0" step="0.01" placeholder="0.00" required
+                        type="number" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="payment-due-date">Due Date</label>
+                    <input class="form-input" id="payment-due-date" required type="date" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="payment-payee">Payee/Vendor</label>
+                    <input class="form-input" id="payment-payee" placeholder="e.g., Bank Name" required type="text" />
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closeAddPaymentModal()" type="button">Cancel</button>
+                    <button class="btn-primary" type="submit">Add Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pay Now Modal -->
+    <div class="modal" id="pay-now-modal">
+        <div class="modal-content-payment">
+            <div class="modal-header">
+                <h2>Complete Payment</h2>
+                <button class="modal-close" onclick="closePayNowModal()">&times;</button>
+            </div>
+            <form class="modal-form" id="pay-now-form">
+                <input type="hidden" id="pay-payment-id" />
+                <div class="payment-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Payment To:</span>
+                        <span class="summary-value" id="pay-payee">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Description:</span>
+                        <span class="summary-value" id="pay-description">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Due Date:</span>
+                        <span class="summary-value" id="pay-due-date">-</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span class="summary-label">Amount:</span>
+                        <span class="summary-value" id="pay-amount">$0.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="payment-card">Pay With Credit Card</label>
+                    <select class="form-input" id="payment-card" required>
+                        <option value="">Select a card</option>
+                    </select>
+                    <p class="form-hint">Only cards from your profile with sufficient limit will be shown
+                    </p>
+                </div>
+                <div class="alert-info">
+                    <svg class="icon-sm" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                        </path>
+                    </svg>
+                    <p>This is a simulated payment. Your card balance will be updated accordingly.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closePayNowModal()" type="button">Cancel</button>
+                    <button class="btn-success" type="submit">Pay Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- NPS Rating Modal -->
+    <div id="nps-rating-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Rate Your Payment Experience</h2>
+            </div>
+            <form class="modal-form" id="nps-rating-form">
+                <input type="hidden" id="nps-payment-id" />
+                <div class="form-group">
+                    <label class="form-label">How satisfied are you with your payment experience?</label>
+                    <div class="star-rating">
+                        <button type="button" class="star-btn" data-rating="1">
+                            <svg class="star-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button type="button" class="star-btn" data-rating="2">
+                            <svg class="star-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button type="button" class="star-btn" data-rating="3">
+                            <svg class="star-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button type="button" class="star-btn" data-rating="4">
+                            <svg class="star-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button type="button" class="star-btn" data-rating="5">
+                            <svg class="star-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="nps-message">Tell us more (optional)</label>
+                    <textarea class="form-input" id="nps-message" rows="4"
+                        placeholder="Share your feedback, suggestions, or any issues you encountered..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closeNPSModal()" type="button">Skip</button>
+                    <button class="btn-primary" type="submit">Submit Feedback</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/userdashboard.js"></script>
+</body>
+
+</html>

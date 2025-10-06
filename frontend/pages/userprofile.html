@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ascend - Your Profile</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../styles/userprofile.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar (Same as userdashboard) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg class="logo-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,176a72,72,0,1,1,72-72A72.08,72.08,0,0,1,128,200ZM164.49,99.51a12,12,0,0,1,0,17l-28,28a12,12,0,0,1-17,0l-28-28a12,12,0,0,1,17-17L128,119l19.51-19.52A12,12,0,0,1,164.49,99.51Z">
+                        </path>
+                    </svg>
+                    <span class="logo-text">Ascend</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a class="nav-item" href="userdashboard.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z">
+                                </path>
+                            </svg>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="credo.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-88a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm-84,0a12,12,0,1,1,12,12A12,12,0,0,1,60,128Zm144,0a12,12,0,1,1,12,12A12,12,0,0,1,204,128Z">
+                                </path>
+                            </svg>
+                            <span>Credo AI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="improvescore.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,40H136V24a8,8,0,0,0-16,0V40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H79.36L57.75,219a8,8,0,0,0,12.5,10l29.59-37h56.32l29.59,37a8,8,0,1,0,12.5-10l-21.61-27H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,136H40V56H216V176ZM104,120v24a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm32-16v40a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm32-16v56a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Z">
+                                </path>
+                            </svg>
+                            <span>Improve Scores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="rewards.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H216V200Zm-88-80a48,48,0,0,0,48-48,8,8,0,0,0-16,0,32,32,0,0,1-64,0,8,8,0,0,0-16,0A48,48,0,0,0,128,120Z">
+                                </path>
+                            </svg>
+                            <span>Rewards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item active" href="userprofile.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z">
+                                </path>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a class="nav-item" href="#">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z">
+                        </path>
+                    </svg>
+                    <span>Help and Support</span>
+                </a>
+                <a class="nav-item logout-btn" href="#" onclick="handleLogout()">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z">
+                        </path>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-container">
+                <h1 class="page-title">Your Profile</h1>
+
+                <div class="profile-grid">
+                    <!-- Account Information Card -->
+                    <div class="profile-card">
+                        <h2 class="card-title">Account Information</h2>
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Name</label>
+                                <input class="form-input user-name" id="name" readonly type="text" value="Loading..." />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email</label>
+                                <input class="form-input user-email" id="email" readonly type="email"
+                                    value="Loading..." />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="credit-score">Credit Score</label>
+                                <input class="form-input user-credit-score" id="credit-score" readonly type="text"
+                                    value="---" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="account-created">Account Created</label>
+                                <input class="form-input user-created-date" id="account-created" readonly type="text"
+                                    value="Loading..." />
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn-primary" id="edit-profile-btn" type="button"
+                                    onclick="toggleEditMode()">
+                                    Edit Profile
+                                </button>
+                                <button class="btn-primary" id="save-profile-btn" type="button"
+                                    onclick="saveProfileChanges()" style="display: none;">
+                                    Save Changes
+                                </button>
+                                <button class="btn-secondary" id="cancel-edit-btn" type="button"
+                                    onclick="toggleEditMode()" style="display: none;">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Cards & Loans -->
+                    <div class="info-section">
+                        <!-- Active Credit Cards -->
+                        <div class="info-card">
+                            <h2 class="card-title">Active Credit Cards</h2>
+                            <div class="info-list" id="credit-cards-list">
+                                <!-- Credit cards will be dynamically loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Current Ongoing Loans -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <h2 class="card-title">Current Ongoing Loans</h2>
+                                <button class="btn-add" onclick="openAddLoanModal()">
+                                    <svg class="icon-sm" fill="currentColor" viewBox="0 0 256 256"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z">
+                                        </path>
+                                    </svg>
+                                    Add Loan
+                                </button>
+                            </div>
+                            <div class="info-list" id="loans-list">
+                                <!-- Loans will be dynamically loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Loan Modal -->
+    <div class="modal" id="add-loan-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Loan</h2>
+                <button class="modal-close" onclick="closeAddLoanModal()">&times;</button>
+            </div>
+            <form class="modal-form" id="add-loan-form">
+                <div class="form-group">
+                    <label class="form-label" for="loan-name">Loan Type</label>
+                    <input class="form-input" id="loan-name" placeholder="e.g., Auto Loan, Personal Loan" required
+                        type="text" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="loan-provider">Lender/Provider</label>
+                    <input class="form-input" id="loan-provider" placeholder="e.g., Bank Name" required type="text" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="loan-remaining">Remaining Amount ($)</label>
+                    <input class="form-input" id="loan-remaining" min="0" placeholder="0" required type="number" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="loan-total">Total Loan Amount ($)</label>
+                    <input class="form-input" id="loan-total" min="0" placeholder="0" required type="number" />
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closeAddLoanModal()" type="button">Cancel</button>
+                    <button class="btn-primary" type="submit">Add Loan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Fraud Report Modal -->
+    <div class="modal" id="fraud-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Report Fraudulent Loan</h2>
+                <button class="modal-close" onclick="closeFraudModal()">&times;</button>
+            </div>
+            <form class="modal-form" id="fraud-form">
+                <input type="hidden" id="fraud-loan-id" />
+                <div class="alert-warning">
+                    <svg class="icon-sm" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM120,104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm8,88a12,12,0,1,1,12-12A12,12,0,0,1,128,192Z">
+                        </path>
+                    </svg>
+                    <p>You are about to mark this loan as fraudulent. This action will flag the loan for review.</p>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="fraud-reason">Reason for Fraud Report</label>
+                    <select class="form-input" id="fraud-reason" required>
+                        <option value="">Select a reason</option>
+                        <option value="unauthorized">Unauthorized Loan - I did not apply for this</option>
+                        <option value="identity-theft">Identity Theft Suspected</option>
+                        <option value="incorrect-amount">Incorrect Loan Amount</option>
+                        <option value="paid-off">Already Paid Off - Showing Incorrectly</option>
+                        <option value="duplicate">Duplicate Entry</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="fraud-details">Additional Details</label>
+                    <textarea class="form-input" id="fraud-details"
+                        placeholder="Provide any additional information about this fraudulent loan..." required
+                        rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="fraud-contact">Contact Number (for follow-up)</label>
+                    <input class="form-input" id="fraud-contact" placeholder="+1 (555) 123-4567" type="tel" />
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closeFraudModal()" type="button">Cancel</button>
+                    <button class="btn-danger" type="submit">Submit Fraud Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/userprofile.js"></script>
+</body>
+
+</html>

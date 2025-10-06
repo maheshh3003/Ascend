@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Credo - AI Credit Advisor</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../styles/credo.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg class="logo-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,176a72,72,0,1,1,72-72A72.08,72.08,0,0,1,128,200ZM164.49,99.51a12,12,0,0,1,0,17l-28,28a12,12,0,0,1-17,0l-28-28a12,12,0,0,1,17-17L128,119l19.51-19.52A12,12,0,0,1,164.49,99.51Z">
+                        </path>
+                    </svg>
+                    <span class="logo-text">Ascend</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li>
+                        <a class="nav-item" href="userdashboard.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z">
+                                </path>
+                            </svg>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item active" href="credo.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-88a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm-84,0a12,12,0,1,1,12,12A12,12,0,0,1,60,128Zm144,0a12,12,0,1,1,12,12A12,12,0,0,1,204,128Z">
+                                </path>
+                            </svg>
+                            <span>Credo AI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="improvescore.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,40H136V24a8,8,0,0,0-16,0V40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H79.36L57.75,219a8,8,0,0,0,12.5,10l29.59-37h56.32l29.59,37a8,8,0,1,0,12.5-10l-21.61-27H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,136H40V56H216V176ZM104,120v24a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm32-16v40a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm32-16v56a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Z">
+                                </path>
+                            </svg>
+                            <span>Improve Scores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="rewards.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H216V200Zm-88-80a48,48,0,0,0,48-48,8,8,0,0,0-16,0,32,32,0,0,1-64,0,8,8,0,0,0-16,0A48,48,0,0,0,128,120Z">
+                                </path>
+                            </svg>
+                            <span>Rewards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-item" href="userprofile.html">
+                            <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z">
+                                </path>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a class="nav-item" href="#">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z">
+                        </path>
+                    </svg>
+                    <span>Help and Support</span>
+                </a>
+                <a class="nav-item logout-btn" href="#" onclick="handleLogout()">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z">
+                        </path>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Chat Interface -->
+        <main class="main-content">
+            <div class="chat-container">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    <div class="chat-header-left">
+                        <div class="ai-avatar">
+                            <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-88a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm-84,0a12,12,0,1,1,12,12A12,12,0,0,1,60,128Zm144,0a12,12,0,1,1,12,12A12,12,0,0,1,204,128Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="chat-header-info">
+                            <h1 class="chat-title">Credo AI</h1>
+                            <p class="chat-subtitle">Your Personal Credit Score Advisor</p>
+                        </div>
+                    </div>
+                    <button class="btn-clear" onclick="clearChat()" title="Clear conversation">
+                        <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Welcome Message -->
+                    <div class="message ai-message">
+                        <div class="message-avatar">
+                            <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-88a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm-84,0a12,12,0,1,1,12,12A12,12,0,0,1,60,128Zm144,0a12,12,0,1,1,12,12A12,12,0,0,1,204,128Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                <p>👋 <strong>Hello! I'm Credo, your AI Credit Score Advisor.</strong></p>
+                                <p>I'm here to help you improve your credit score and achieve your financial goals. I
+                                    can assist with:</p>
+                                <ul>
+                                    <li>💳 Understanding your credit score</li>
+                                    <li>📊 Personalized improvement strategies</li>
+                                    <li>🎯 Action plans for your credit category</li>
+                                    <li>💡 Credit utilization tips</li>
+                                    <li>📈 Building credit history</li>
+                                    <li>🔍 Credit report insights</li>
+                                </ul>
+                                <p>What would you like to know about improving your credit score?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typing Indicator -->
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <div class="message ai-message">
+                        <div class="message-avatar">
+                            <svg fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-88a16,16,0,1,1-16-16A16,16,0,0,1,144,128Zm-84,0a12,12,0,1,1,12,12A12,12,0,0,1,60,128Zm144,0a12,12,0,1,1,12,12A12,12,0,0,1,204,128Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="typing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input-container">
+                    <div class="suggested-prompts" id="suggested-prompts">
+                        <button class="prompt-chip" onclick="sendSuggestedPrompt(this)">
+                            How can I improve my credit score?
+                        </button>
+                        <button class="prompt-chip" onclick="sendSuggestedPrompt(this)">
+                            What's a good credit utilization rate?
+                        </button>
+                        <button class="prompt-chip" onclick="sendSuggestedPrompt(this)">
+                            How long does it take to build credit?
+                        </button>
+                        <button class="prompt-chip" onclick="sendSuggestedPrompt(this)">
+                            What factors affect my credit score?
+                        </button>
+                    </div>
+
+                    <form class="chat-input-form" id="chat-form" onsubmit="handleSubmit(event)">
+                        <div class="input-wrapper">
+                            <textarea id="chat-input" class="chat-input"
+                                placeholder="Ask me anything about improving your credit score..." rows="1"
+                                maxlength="2000"></textarea>
+                            <button type="submit" class="btn-send" id="send-button" disabled>
+                                <svg class="icon-send" fill="currentColor" viewBox="0 0 256 256"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M231.87,114l-168-95.89A16,16,0,0,0,40.92,37.34L71.55,128,40.92,218.67A16,16,0,0,0,63.87,237.9l168-95.89a16,16,0,0,0,0-27.94ZM63.87,223.84l0,0L94.25,134.11,145.59,128l-51.34-6.11L63.87,32.16l0,0,168,95.83Z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="input-footer">
+                            <span class="char-count" id="char-count">0 / 2000</span>
+                            <span class="powered-by">Powered by Gemini AI</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../scripts/credo.js"></script>
+</body>
+
+</html>
