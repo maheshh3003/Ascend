@@ -1,29 +1,36 @@
 {
-  "buildCommand": null,
-  "outputDirectory": "frontend",
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "github": {
+    "silent": true
+  },
   "rewrites": [
     {
       "source": "/",
-      "destination": "/index.html"
+      "destination": "/frontend/index.html"
     },
     {
-      "source": "/pages/(.*)",
-      "destination": "/pages/$1"
+      "source": "/pages/:path*",
+      "destination": "/frontend/pages/:path*"
     },
     {
-      "source": "/(.*)",
-      "destination": "/$1"
+      "source": "/scripts/:path*",
+      "destination": "/frontend/scripts/:path*"
+    },
+    {
+      "source": "/styles/:path*",
+      "destination": "/frontend/styles/:path*"
     }
   ],
   "headers": [
     {
-      "source": "/scripts/(.*)",
+      "source": "/frontend/scripts/(.*)",
       "headers": [
         {
           "key": "Content-Type",
           "value": "application/javascript; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }
